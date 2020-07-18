@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed>
+    <titulo>Alimentadores</titulo>
+
+    <alimentadoresyoutube>
+        {%for alimentadorYT in alimentadoryoutube%}
+            <alimentador>
+                <nombre>{{alimentadorYT.nombre}}</nombre>
+                <enlace>{{alimentadorYT.enlace}}</enlace>
+                <items>items:{{alimentadorYT.item_set.count}}</items>
+                <puntuacion>puntuacion:{{alimentadorYT.puntuacion}}</puntuacion>
+            </alimentador>
+        {%endfor%}
+    </alimentadoresyoutube>
+
+    <alimentadoresflickr>
+        {%for alimentadorFR in alimentadoresflickr%}
+            <alimentador>
+                <nombre>{{alimentadorFR.nombre}}</nombre>
+                <enlace>{{alimentadorFR.enlace}}</enlace>
+                <items>items:{{alimentadorFR.item_set.count}}</items>
+                <puntuacion>puntuacion:{{alimentadorFR.puntuacion}}</puntuacion>
+            </alimentador>
+        {%endfor%}
+    </alimentadoresflickr>
+
+    <alimentadoreslastfm>
+        {%for alimentadorLF in alimentadoreslast%}
+            <alimentador>
+                <nombre>{{alimentadorLF.nombre}}</nombre>
+                <enlace>{{alimentadorLF.enlace}}</enlace>
+                <items>items:{{alimentadorLF.item_set.count}}</items>
+                <puntuacion>puntuacion:{{alimentadorLF.puntuacion}}</puntuacion>
+            </alimentador>
+        {%endfor%}
+    </alimentadoreslastfm>
+</feed>
+

@@ -1,0 +1,98 @@
+{% extends 'MisCosas/base.html' %}
+{%load static %}
+    {% block contenido %}
+
+    <header>
+        <h1 class="informacion">Informacíon sobre la aplicación</h1>
+    </header>
+
+    <section class="section">
+        <p>Julián Ángel Pérez Muñoz<br>
+        Servicios de Aplicaciones Telemáticas<br>
+        Ingeniería en Tecnologías de la Telecomunicación</p>
+    </section>
+
+    <section class="section">
+        <h2>Funcionamiento General</h2>
+        <p>Aplicación web que permite gestionar distinta información de varios sitios web diferentes, El usuario deberá introducir el dato requerido para caso, estos
+            se denominarán alimentadores. La informácion que contengan dichos alimentadores los llamaremos items. El usuario podrá también navegar por la web libremente
+            y vistar los alimentadores que hayan sido visitados anteriormente por otros usuarios. Habrá dos formas de navegar por la aplicación según si estamos o no registrados
+            , si estás registrado podrás votar y comentar los distintos items de la aplicación además de tener una página principal personalizada con tus items más votados y
+            una página de usuario con la actividad en la aplicación.</p>
+    </section>
+    
+    <section class="section">
+        <h2>Interfaz</h2>
+        <p>A continuación veremos las páginas por las que puede navegar el usuario y las funciones de estas.</p>
+        <h3>Página Principal</h3>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col col-sm-6">
+                <p>En esta página el usuario podrá ver los 10 items con mayor puntuación de la aplicacíon, habrá unos formularios para que el usuario inserte los datos
+                correspondientes a cada alimentador(para youtube el id del canal, para last.fm el nombre del artista y para flickr el nombre de la etiqueta) y por último tendremos un historial de los alimentadores que se han seleccionado en la pagina alguna vez, podremos acceder
+                a la página del alimentador o eliminarlo de esta lista. Si el usuario está registrado podrá ver además los últimos 5 items votados por este pudiendo cambiar el voto desde la página principal. </p>
+            </div>
+            <div class="col col-sm-6">
+                <img src="{%static '/MisCosas/paginaprincipal.png'%}" height="200px">
+            </div>
+        </div>
+        <h3>Página Alimentadores</h3>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col col-sm-6">
+                <img src="{%static '/MisCosas/paginaalimentadores.png'%}" height="200px">
+            </div>
+            <div class="col col-sm-6">
+                <p>En esta página podremos ver todos los alimentadores(en el caso de youtube el nombre del canal, para last.fm el nombre del artista y para
+                    flickr el nombre de la etiqueta) que se han utilizado alguna vez en la aplicación aunque no aparezcan en la página principal</p>
+            </div>
+        </div>
+        <h3>Página Alimentador</h3>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col col-sm-6">
+                <p>Muestra el titulo del alimentador siendo este un enlace a su página original y una lista de todos los items(para el caso de youtube los videos del canal, para last.fm los
+                    albumes de los artistas y en el caso de flickr todas las fotos con esa etiqueta) que contiene el alimentador siendo los títulos enlaces a sus páginas originales,
+                    el enlace con el texto "Más Información" te lleva a la página del item en la aplicación</p>
+            </div>
+            <div class="col col-sm-6">
+                <img src="{%static '/MisCosas/paginaalimentador.png'%}" height="200px">
+            </div>
+        </div>
+        <h3>Página Item</h3>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col col-sm-6">
+                    <img src="{%static '/MisCosas/paginaitem.png'%}" height="200px">
+            </div>
+            <div class="col col-sm-6">
+                <p>En esta página podremos ver todos los alimentadores que se han utilizado alguna vez en la aplicación aunque no aparezcan en la página principal</p>
+            </div>
+        </div>
+        <h3>Página Usuarios</h3>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col col-sm-6">
+                <p>Esta página mostrará los usuarios registrados en la aplicación pudiendo verse la cantidad de items que han votado y comentado, su nombre es un enlace a su página
+                de usuario</p>
+            </div>
+            <div class="col col-sm-6">
+                    <img src="{%static '/MisCosas/paginausuarios.png'%}" height="200px">
+            </div>
+        </div>
+        <h3>Página Usuario</h3>
+        <hr>
+        <div class="row align-items-center">
+            <div class="col col-sm-6">
+                    <img src="{%static '/MisCosas/paginausuario.png'%}" height="200px">
+            </div>
+            <div class="col col-sm-6">
+                <p>Muestra la página personal del usuario donde podemos los items que han sido votados y comentados siendo su título un enlace a su página original y
+                pudiendo acceder a la página del item en la aplicación pulsando en "Más Información". Si el usuario está registrado y entra en su propia página
+                podrá cambiar el estilo de la aplicación tanto el tamaño de las letras como el modo (ligero u oscuro) al igual que podrá cambiar su foto de perfíl.</p>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}
+</body>

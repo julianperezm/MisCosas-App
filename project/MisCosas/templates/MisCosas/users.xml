@@ -1,0 +1,14 @@
+<usuarios>
+    {%for user in users%}
+    <usuario>
+        {%if user.image%}
+        <imagen>{{user.image.url}}</imagen>
+        {%else%}
+            <p>No hay foto</p>
+        {%endif%}
+        <nombre>{{user.username}}</nombre>
+        <itemsvotados>{{user.voto_set.count}}</itemsvotados>
+        <itemscomentados>{{user.comentario_set.count}}</itemscomentados>
+    </usuario>
+    {%endfor%}
+</usuarios>

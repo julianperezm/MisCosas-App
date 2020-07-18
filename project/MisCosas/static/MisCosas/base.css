@@ -1,0 +1,532 @@
+
+#mainNav {
+    background-color: black;
+}
+
+#mainNav .navbar-brand {
+    color: #c9c9c9;
+    font-weight: bold;
+}
+
+#mainNav .navbar-brand:hover {
+    color: white;
+}
+
+#mainNav .nav-link {
+    font-size: 12px;
+    color: #c9c9c9;
+}
+
+#mainNav .nav-link:hover {
+    font-size: 12px;
+    color: white;
+}
+
+#mainNav .navbar-nav .nav-item:hover {
+    outline: none;
+    background-color: transparent;
+}
+
+#mainNav .navbar-nav .nav-item {
+   padding: 0 2rem;
+}
+
+#mainNav .navbar-nav .nav-item .dropdown-menu{
+    font-size: 0.8rem;
+    background-color: white;
+    width: 300px;
+}
+
+#mainNav .navbar-nav .nav-item .dropdown-item:hover{
+    text-decoration: underline;
+}
+
+#home {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 35rem;
+    padding: 19rem 0;
+    background: url("fondo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    text-align: center;
+}
+
+#register-form{
+    text-align: center;
+    padding:3rem;
+}
+
+.register {
+    color: white;
+    padding: 4rem;
+    padding-top: 8rem;
+    background: url("portada.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    text-align: center;
+    font-size: 3rem;
+}
+
+header:focus{
+    color: white;
+}
+header h1 {
+    font-size: 10rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    color: white;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    line-height: 2rem;
+    font-weight: bold;
+    color: white
+}
+header p {
+    line-height: 2rem;
+    color: white
+}
+
+a {
+    color:  #0071e3;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+#top10 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: rgba(242, 242, 242, 0.56);
+    align-items: center;
+}
+#top10:active{
+    color: white;
+}
+#top10 h1 {
+    font-size: 5rem;
+    font-weight:bold;
+    background: linear-gradient(to right, #4decf7, #f952ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+#top10 h4 a{
+    font-size: 2rem;
+    color: black;
+}
+
+#top5 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: rgba(242, 242, 242, 0.56);
+    align-items: center;
+}
+
+#top5 h1 {
+   font-size: 5rem;
+    font-weight:bold;
+    background: linear-gradient(to right, #6cf797, #3bb5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+#alimentadores {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: #ffffff;
+    text-align: center;
+
+}
+#alimentadores h1{
+    text-align: center;
+    font-size: 5rem;
+    font-weight:bold;
+}
+
+#alimentadores h6{
+    color: red;
+    font-weight: lighter;
+    padding-bottom: 3rem;
+}
+#alimentadores a {
+   color: black;
+}
+#alimentadores .form-control{
+     text-align: center;
+}
+#alimentadores .youtube:hover{
+    color: red;
+    text-decoration: none;
+}
+#alimentadores .reddit:hover {
+    color: orange;
+    text-decoration: none;
+}
+#alimentadores .last:hover {
+    color:#a53f3b;
+    text-decoration: none;
+}
+
+#historialalimentadores{
+    background: black;
+    color : white;
+    padding: 3rem;
+    text-align: center;
+}
+#historialalimentadores #histali{
+    align-items: center;
+    text-align: center;
+}
+#historialalimentadores h1{
+    font-size: 5rem;
+    font-weight:bold;
+}
+
+#historialalimentadores h2{
+    font-size: 2.5rem;
+    font-weight:bold;
+    background: linear-gradient(to right, #ff2e8c, #f52e1c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+#historialalimentadores h3 a{
+    color: white;
+}
+
+#historialalimentadores h6{
+    color: red;
+    font-weight: lighter;
+    padding-bottom: 3rem;
+}
+.urls {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 10rem;
+    background: white;
+}
+
+.btn {
+    background: #0071e3;
+    color: white;
+    border-radius: 2rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.1rem;
+}
+
+.btn:hover {
+    background: #0081f3;
+    color: white;
+}
+#informacion{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: rgba(242, 242, 242, 0.56);
+    align-items: center;
+}
+
+#informacion h1 {
+    font-size: 5rem;
+    font-weight:bold;
+    background: linear-gradient(to right, #fff45c, #ffa15e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+#informacionyoutube{
+    position: relative;
+    width: 100%;
+    padding-top: 2rem;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    background: rgba(242, 242, 242, 0.56);
+
+}
+
+#informacionyoutube h1{
+    background: linear-gradient(to right, #ff2e8c, #f52e1c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5rem;
+    font-weight: bold;
+
+}
+
+#informacionyoutube i{
+    background: linear-gradient(to right, #ff2e8c, #f52e1c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+#informacionyoutube #alimentadoresyoutube{
+    align-items: center;
+}
+#informacionyoutube #alimentadoresyoutube h2 a{
+    color: black;
+    font-size: 3.5rem;
+}
+#informacionreddit{
+    position: relative;
+    width: 100%;
+    padding-top: 2rem;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    background: rgba(242, 242, 242, 0.56);
+}
+
+
+#informacionreddit h1{
+    background: linear-gradient(to right, #ffd49e, #f5a700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5rem;
+    font-weight: bold;
+
+}
+#informacionreddit i{
+   background: linear-gradient(to right, #ffd49e, #f5a700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+#informacionreddit #alimentadoresreddit{
+    align-items: center;
+}
+#informacionreddit #alimentadoresreddit h2 a{
+    color: black;
+}
+
+#alimentador{
+    background: black;
+    background-size: cover;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 5rem 5rem;
+    color: white;
+    padding: 19rem;
+}
+
+#alimentador h1 a{
+    color: white;
+}
+#ali {
+    background: black;
+    background-size: cover;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 5rem 5rem;
+    color: white;
+    padding: 19rem;
+}
+
+#ali a {
+    color: rgb(0, 0, 0);
+}
+
+#ali a:hover {
+    color: white;
+    text-decoration: none;
+
+}
+#ali h1{
+    font-size: 8rem;
+    color: white;
+}
+#ali h4{
+    font-size: 2rem;
+    color: white;
+}
+
+#item{
+    text-align: center;
+    align-items: center;
+    background: linear-gradient(to right, #ff2e8c, #f52e1c);
+    width: 100%;
+    height: auto;
+    padding: 11rem 5rem;
+}
+
+#item a{
+    color: rgb(240, 249, 249);
+}
+
+#item a:hover {
+    color: white;
+    text-decoration: none;
+
+}
+#item .botonitem{
+    text-align: center;
+}
+#item h1{
+    font-size: 6rem;
+}
+#item h3{
+    color: white;
+    font-size: 2.3rem;
+}
+#item h4{
+    font-size: 2rem;
+    color: white;
+}
+#itemsection{
+    text-align: center;
+    position: relative;
+    width: 100%;
+    padding: 2rem;
+    height: auto;
+    background: rgba(242, 242, 242, 0.56);
+    align-items: center;
+
+}
+#itemsection h1{
+    background: linear-gradient(to right, #fff45c, #ff7731);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: bold
+}
+
+#item .botonesvotos{
+    text-align: center;
+}
+
+.itemimagen img{
+    border-radius: 3rem;
+
+}
+
+#itemalimentador{
+    text-align: center;
+    position: relative;
+    width: 100%;
+    padding: 2rem;
+    height: auto;
+    background: rgb(0, 0, 0);
+    align-items: center;
+    color: white;
+
+}
+#informacionalimentador{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background: rgba(242, 242, 242, 0.56);
+    align-items: center;
+    text-align: center;
+}
+
+#informacionalimentador h2 a{
+    color: black;
+}
+
+#itemalimentador h1 {
+    background: linear-gradient(to right, #4decf7, #f952ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: bold;
+
+}
+
+#itemscomments{
+    padding:2rem;
+    background:white;
+    text-align: center;
+}
+
+#itemscomments h1{
+    font-size: 3rem;
+    font-weight: bold;
+}
+.botonitem{
+    background: transparent;
+}
+
+.botonitem:hover{
+    font-size: 1rem;
+    background: transparent;
+}
+
+#tituloperfil h1{
+    font-size: 4rem;
+}
+
+#tituloperfil h1 a{
+        color: black;
+}
+
+#cuerpoperfil #web{
+    color: black;
+}
+
+#headerusuarios{
+    background: black;
+    background-size: cover;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 5rem 5rem;
+    color: white;
+    padding: 19rem;
+}
+
+#usuario{
+    align-items: center;
+    background:rgba(242, 242, 242, 0.56);
+    text-align: center;
+    padding:2rem;
+}
+
+#titulouser{
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+}
+#titulouser h1{
+    font-size: 4rem;
+}
+footer{
+    background-color: #999999;
+    padding: 4rem 0;
+    text-align: center;
+    font-size: 0.7rem;
+}

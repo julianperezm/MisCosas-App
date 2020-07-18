@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed>
+    <titulo>{{item.nombre}}</titulo>
+    <votospositivos>{{item.votosPositivos}}</votospositivos>
+    <votosnegativos>{{item.votosNegativos}}</votosnegativos>
+    {% if user.is_authenticated %}
+        {%if voto.estado == 'estadopositivo'%}
+            <estadovoto>positivo</estadovoto>
+        {%elif voto.estado == "estadonegativo"%}
+            <estadovoto>negativo</estadovoto>
+        {%endif%}
+    {%endif%}
+    <item>
+        {%if alimentador.type == 'youtube'%}
+            <id>{{item.itemId}}</id>
+            <descripcion>{{item.descripcion}}</descripcion>
+        {%elif alimentador.type == 'flickr' or alimentador.type == 'lastfm' %}
+            <imagen>{{item.fotoItem}}</imagen>
+        {%endif%}
+    </item>
+
+    <alimentador>
+        <nombre>{{alimentador.nombre}}</nombre>
+        <id>{{alimentador.alimentadorId}}</id>
+        <itemdisp>{{alimentador.item_set.count}}</itemdisp>
+        <puntuación>{{alimentador.puntuacion}}</puntuación>
+    </alimentador>
+
+    <comentarios>
+        {%if comment%}
+        {%for comentario in comment%}
+        <comentario>
+
+            <nombre>{{comentario.usuario.username}}</nombre>
+            <fecha>{{comentario.fecha}}</fecha>
+            <cuerpo>{{comentario.cuerpo}}</cuerpo>
+            {%if comentario.imagen%}
+            <imagen>{{comentario.imagen}}</imagen>
+            {%endif%}
+
+        </comentario>
+          {%endfor%}
+        {%endif%}
+    </comentarios>
+</feed>
+

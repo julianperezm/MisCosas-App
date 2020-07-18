@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed>
+    <titulo>{{alimentador.nombre}}</titulo>
+    <enlace>{{alimentador.enlace}}</enlace>
+    {%if alimentador.pagPrincipal%}
+    <estado>Deselecionar</estado>
+    {%else%}
+    <button>Seleccionar</button>
+    {%endif%}
+    {% if contentList %}
+        {% for content in contentList %}
+        <item>
+            <nombre>{{content.nombre}}</nombre>
+            <enlace>{{content.enlace}}</enlace>
+        </item>
+        {% endfor %}
+    {% else %}
+    <p>No contents are available.</p>
+    {% endif %}
+</feed>
+

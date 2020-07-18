@@ -1,0 +1,95 @@
+{% extends 'MisCosas/base.html' %}
+
+    {% block contenido %}
+    <section  id="titulouser" >
+        <div class="container">
+            <div class="row">
+                {%if sameuser%}
+                    <div class="col col-sm-6">
+                        <h1 class="pt-5">Tu cuenta, {{users.username}}</h1>
+                    </div>
+                {%else%}
+                    <div class="col col-sm-6">
+                        <h1 class="pt-5">Cuenta de {{users.username}}</h1>
+                    </div>
+                {%endif%}
+                <div class="col col-sm-6">
+                    {%if users.image%}
+                        <img class="fotouser pt-3" src="{{users.image.url}}" height="300px">
+                    {%else%}
+                        <div class="fotouser p-5"><i class="fas fa-user fa-9x"></i></div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </section>
+    <p></p>
+    <section>
+        <div class="container">
+        <div class="row" id="cuerpoperfil">
+            <div class="col col-sm-6">
+                <h2>Tus items votados</h2>
+                <h5>Aquí entontrás los items que has votado en la aplicación</h5>
+                {%for item in itemsvotados%}
+                <p><a href="{{item.item.enlace}}" id="web">{{item.item}}</a><br>
+                <a class="enlaceitem" href="/MisCosas/{{item.item.alimentador.type}}/{{item.item.alimentador.alimentadorId}}/{{item.item.itemId}}">Más información ></a></p>
+                <br>
+                {%endfor%}
+            </div>
+            <div class="col col-sm-6">
+                <h2>Tus items comentados</h2>
+                <h5>Aquí entontrás los items que has comentado en la aplicación</h5>
+                {%for item in itemscomentados%}
+                <p><a href="{{item.item.enlace}}" id="web">{{item.item}}</a><br>
+                <a class="enlaceitem" href="/MisCosas/{{item.item.alimentador.type}}/{{item.item.alimentador.alimentadorId}}/{{item.item.itemId}}">Más información ></a></p>
+                <br>
+                {%endfor%}
+            </div>
+        </div>
+        </div>
+    </section>
+    <p></p>
+
+    {%if sameuser%}
+    <section class="estilo">
+        <div class="container">
+            <div class="row">
+                <h1 class="pt-5 mb-5">Estilo de la página</h1>
+            </div>
+            <div class="row text-center">
+                <div class="col col-sm-4">
+                    <h2>Cambio de Foto de Perfil</h2>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form2.as_p}}
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+                <div class="col col-sm-4 mb-5">
+                <h2>Tamaño de Letra</h2>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input class="form-check-input" type="radio" name="tamañoletra" value="grande"> Grande<br>
+                        <input class="form-check-input" type="radio" name="tamañoletra"  value="mediana"> Mediana<br>
+                        <input class="form-check-input" type="radio" name="tamañoletra"  value="pequeña"> Pequeña<br>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+                <div class="col col-sm-4">
+                <h2>Modo</h2>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input class="form-check-input" type="radio" name="estilo" value="Ligero"> Ligero<br>
+                        <input class="form-check-input" type="radio" name="estilo"  value="Oscuro"> Oscuro<br>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p></p>
+    {%endif%}
+
+    {% endblock %}

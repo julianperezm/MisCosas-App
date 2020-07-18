@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{%load static%}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mis Cosas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/MisCosas/css">
+    <link rel="icon" type="image/ico" href="{% static 'MisCosas/favicon.ico' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6d465be11d.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg justify-content-center fixed-top" id="mainNav">
+        <a class="navbar-brand" href="{% url 'index'%}">
+            <i class="fas fa-folder"></i>
+        </a>
+        <ul class="navbar-nav">
+            {%if paginaPrincipal%}
+                <li class="nav-item">
+                    <a class="nav-link" href="#top10">Top 10</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#top5">Top 5 </a>
+                </li>
+                {%endif%}
+                <li class="nav-item">
+                    <a class="nav-link" href="#alimentadores">Elección Alimentador </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#historialalimentadores">Historial</a>
+                </li>
+            {%else%}
+                <li class="nav-item">
+                    <a class="nav-link" href="/MisCosas">Inicio</a>
+                </li>
+            {%endif%}
+            {%if not paginaAlimentadores%}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'alimentadores'%}">Alimentadores</a>
+            </li>
+            {%endif%}
+            {%if not paginaUsuarios%}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users'%}">Usuarios</a>
+            </li>
+            {%endif%}
+            {%if not pagInformacion%}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'informacion'%}">Más Información</a>
+            </li>
+            {%endif%}
+            <li class="nav-item dropdown">
+                <a class="nav-link fas fa-user" href="#" id="navbardrop" data-toggle="dropdown"></a>
+                    {% if user.is_authenticated %}
+                    <div class="dropdown-menu text-center user">
+                        <a href="/MisCosas/user/{{user.username}}"><i class="fas fa-user"></i>&nbsp{{user.username}}</a><br>
+                        <a href="{% url 'logout'%}">Salir</a>
+                    </div>
+                    {%else%}
+                    <form method="POST" action="{% url 'login'%}" class="dropdown-menu caja text-center">
+                    <h2 class="sesion">Inicia Sesión</h2>
+                    <br>
+                    <div class="pl-4 pr-4">
+                       {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="save btn btn-info">Entrar</button>
+                        <br>
+                        <br>
+                        <a href="{% url 'register'%}">¿Nuevo por aqui? Registrate</a>
+                    </div>
+                </form>
+                {%endif%}
+            </li>
+        </ul>
+
+    </nav>
+    {% block contenido %}
+    {% endblock %}
+    <footer>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col col-sm-6">
+                    <p> Esta aplicación utiliza datos proporcionados por <a href="https://www.youtube.com">Youtube</a>, <a href="https://www.last.fm">Last.fm</a> y <a href="https://www.flickr.com">Flickr</a></p>
+                </div>
+                <div class="col-sm-3 offset-sm-3 text-right">
+                    <a href="?format=xml" class="baseurl"><p><small class="fichero">Descargar como fichero</small><br><b class="xml">XML</b></p></a>
+                    <a href="?format=json" class="baseurl"><p><small class="fichero">Descargar como fichero</small><br><b class="xml">JSON</b></p></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>

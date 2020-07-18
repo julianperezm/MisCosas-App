@@ -1,0 +1,284 @@
+{% extends 'MisCosas/base.html' %}
+
+    {% block contenido %}
+
+    <header id="home">
+        <h1>Mis Cosas</h1>
+    </header>
+    <p></p>
+
+    {% if user.is_authenticated %}
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col col-sm-6">
+                <section id="top10reg">
+                    <h1>Top 10 items con más puntuación</h1>
+                    <p>A continuación podrá ver los 10 items con mayor puntuación en la aplicación. Los usuarios registrados pueden votar
+                        estos items, pulse mostrar para saber cuales son. </p>
+                    <p><a data-toggle="collapse" data-target="#top10coll" href="#">Mostrar > </a></p>
+                    <div id="top10coll" class="collapse">
+                            {%for item in top10%}
+                            <h4>
+                                <a href="{{item.enlace}}">{{item.nombre}}</a><br>
+                            </h4>
+                            <div class="row">
+                                <div class="col-sm-1 offset-5">
+                                    <p><i class="fas fa-thumbs-up"></i></p>
+                                    <p>{{item.votosPositivos}}</p>
+                                </div>
+                                <div class="col-sm-1">
+                                    <p><i class="fas fa-thumbs-down"></i></p>
+                                    <p>{{item.votosNegativos}}</p>
+                                </div>
+                            </div>
+                            <p><a class="enlaceitem" href="/MisCosas/youtube/{{item.alimentador.alimentadorId}}/{{item.itemId}}">Más información ></a></p><br>
+                            <br>
+                            {%endfor%}
+                    </div>
+                 </section>
+            </div>
+            <div class="col col-sm-6">
+                <section id="top5">
+                    <h1>Últimos 5 items votados por ti</h1>
+                    <p>A continuación podrá ver los 5 ultimos items votados por ti en la aplicación, pulse mostrar para saber cuales son. </p>
+                    <p><a data-toggle="collapse" data-target="#top5reg" href="#">Mostrar > </a></p>
+                    <div id="top5reg" class="collapse">
+                        {%for voto in itemsvotados%}
+                            <h4>
+                                <a href="{{voto.item.enlace}}">{{voto.item.nombre}}</a><br>
+                            </h4>
+                            <div class="row botonesvotos">
+                                <div class="col-sm-1 offset-sm-5 ">
+                                    <form action="/MisCosas/{{voto.item.alimentador.type}}/{{voto.item.alimentador.alimentadorId}}/{{voto.item.itemId}}/paginaPrincipal/votopositivo/" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary-outline botonitem" name="action" value="votopositivo"><i class="fas fa-thumbs-up fa-2x"></i></button>
+                                    </form>
+                                    {%if voto.estado == 'estadopositivo'%}
+                                    <h4><i class="far fa-check-circle"></i></h4>
+                                    {%endif%}
+                                </div>
+                                <div class="col col-sm-1 ">
+                                    <form action="/MisCosas/{{voto.item.alimentador.type}}/{{voto.item.alimentador.alimentadorId}}/{{voto.item.itemId}}/paginaPrincipal/votonegativo/" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary-outline botonitem" name="action" value="votonegativo"><i class="fas fa-thumbs-down fa-2x"></i></button>
+                                    </form>
+                                    {%if voto.estado == "estadonegativo"%}
+                                     <h4><i class="far fa-check-circle"></i></h4>
+                                    {%endif%}
+                                </div>
+                            </div>
+                            <p><a class="enlaceitem" href="/MisCosas/youtube/{{voto.item.alimentador.alimentadorId}}/{{voto.item.itemId}}">Más información ></a></p><br>
+                        {%endfor%}
+                    </div>
+                </section>
+            </div>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    {%else%}
+    <section id="top10" class="text-center">
+            <h1>Top 10 items con más puntuación</h1>
+            <br>
+            <p>A continuación podrá ver los 10 items con mayor puntuación en la aplicación. Los usuarios registrados pueden votar
+                estos items, pulse mostrar para saber cuales son.  </p>
+            <br>
+            <p><a data-toggle="collapse" data-target="#top10sin" href="#">Mostrar > </a></p>
+            <div id="top10sin" class="collapse">
+                <div class="container votos">
+                    {%for item in top10%}
+                    <h4>
+                    <a href="{{item.enlace}}">{{item.nombre}}</a><br>
+                    </h4>
+                    <div class="row">
+                        <div class="col-sm-1 offset-sm-5">
+                            <p><i class="fas fa-thumbs-up"></i></p>
+                            <p>{{item.votosPositivos}}</p>
+                        </div>
+                        <div class="col col-sm-1">
+                            <p><i class="fas fa-thumbs-down"></i></p>
+                            <p>{{item.votosNegativos}}</p>
+                        </div>
+                    </div>
+                <p><a class="enlaceitem" href="/MisCosas/youtube/{{item.alimentador.alimentadorId}}/{{item.itemId}}">Más información ></a></p>
+                <br>
+                {%endfor%}
+                </div>
+
+            </div>
+    </section>
+    <p></p>
+    {%endif%}
+
+    <section id="alimentadores">
+        <div class="container">
+            <h4>Elección alimentadores</h4>
+            <h1>Alimentadores</h1>
+            <p>
+             Introduce los datos correspondientes en el alimentador que desea obtener los datos
+            </p>
+            <br>
+            <div class="row">
+                <div class="col col-xs-4 youtube">
+                    <a href="https://www.youtube.com" class="youtube"><h2><i class="fab fa-youtube"></i>Youtube</h2></a>
+                    <br>
+                    <form action="/MisCosas/" method="POST">
+                        {% csrf_token %}
+                        <label for="youtube"></label>
+                        <input class="form-control" placeholder="Id del canal" id="youtube" name="idyoutube">
+                        <br>
+                        <button type="submit" class="btn btn-primary" name="action" value="youtube">Enviar</button>
+                    </form>
+                </div>
+                <div class="col col-xs-4 lastfm">
+                    <a href="https://www.last.fm" class="lastfm"> <h2>L<i class="fab fa-lastfm"></i>t.fm</h2> </a>
+                    <br>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <label for="lastfm"></label>
+                    <input class="form-control" placeholder="Nombre del Artista" id="lastfm" name="artistlast"/>
+                    <br>
+                    <button type="submit" class="btn btn-primary" name="action" value="lastfm">Enviar</button>
+                    </form>
+                </div>
+                <div class="col col-xs-4 flickr">
+                     <a href="https://www.flickr.com" class="flickr"> <h2><i class="fab fa-flickr"></i>Flickr</h2></a>
+                    <br>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <label for="idflickr"></label>
+                    <input class="form-control" placeholder="Nombre de Etiqueta" id="idflickr" name="idflickr">
+                    <br>
+                    <button type="submit" class="btn btn-primary" name="action" value="flickr">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <p></p>
+
+    <section id="historialalimentadores">
+        <h4>Historial</h4>
+        <h1>Alimentadores Seleccionados</h1>
+        <p> A continuación podrá ver la lista de alimentadores que han sido elegidos por cualquier usuario, podrá acceder a ellos o eliminarlos de
+        esta lista. Pulsa mostrar para acceder a ellos.</p>
+        <br>
+        <div class="row" id="histali">
+            <div class="col col-md-4">
+                <h2 class="youtube"><i class="fab fa-youtube"></i>Youtube</h2>
+                <p><a data-toggle="collapse" data-target="#histyoutube" href="#">Mostrar > </a></p>
+
+                <div id="histyoutube" class="collapse">
+                    {%for alimentadores in alimentadoresYT%}
+                        <h3 class="nombreitem">
+                            <a href="{{alimentadores.enlace}}">{{alimentadores.nombre}}</a><br>
+                        </h3>
+                        <div class="row">
+                        <div class="col-sm-3 offset-sm-3">
+                            <h4>Items</h4>
+                            <h6>{{alimentadores.item_set.count}}</h6>
+                            <form action="{{alimentadores.type}}/{{alimentadores.alimentadorId}}" method="POST">
+                            {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Alimentador</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Puntuación</h4>
+                            <h6>{{alimentadores.puntuacion}}</h6>
+                            <form action="{{alimentadores.type}}/{{alimentadores.alimentadorId}}/paginaPrincipal/De-Seleccionar" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    {%endfor%}
+                </div>
+            </div>
+
+            <div class="col col-md-4">
+                <h2 class="lastfm">L<i class="fab fa-lastfm"></i>t.fm</h2>
+                <p><a data-toggle="collapse" data-target="#histlast" href="#">Mostrar > </a></p>
+
+                <div id="histlast" class="collapse">
+                    {%for alimentadores in alimentadoresLF%}
+                        <h3 class="nombreitem">
+                            <a href="{{alimentadores.enlace}}">{{alimentadores.nombre}}</a><br>
+                        </h3>
+                        <div class="row">
+                        <div class="col-sm-3 offset-sm-3">
+                            <h4>Items</h4>
+                            <h6>{{alimentadores.item_set.count}}</h6>
+                            <form action="{{alimentadores.type}}/{{alimentadores.nombre}}" method="POST">
+                            {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Alimentador</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Puntuación</h4>
+                            <h6>{{alimentadores.puntuacion}}</h6>
+                            <form action="{{alimentadores.type}}/{{alimentadores.nombre}}/paginaPrincipal/De-Seleccionar" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    {%endfor%}
+                </div>
+            </div>
+
+            <div class="col col-md-4">
+                <h2 class="flickr"><i class="fab fa-flickr"></i>Flickr</h2>
+                <p><a data-toggle="collapse" data-target="#histflickr" href="#">Mostrar > </a></p>
+
+                <div id="histflickr" class="collapse">
+                    {%for alimentadores in alimentadoresFR%}
+                        <h3 class="nombreitem">
+                            <a href="{{alimentadores.enlace}}">{{alimentadores.nombre}}</a><br>
+                        </h3>
+                        <div class="row">
+                        <div class="col-sm-3 offset-sm-3">
+                            <h4>Items</h4>
+                            <h6>{{alimentadores.item_set.count}}</h6>
+                            <form action="{{alimentadores.type}}/{{alimentadores.nombre}}" method="POST">
+                            {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Alimentador</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Puntuación</h4>
+                            <h6>{{alimentadores.puntuacion}}</h6>
+                            <form action="{{alimentadores.type}}/{{alimentadores.nombre}}/paginaPrincipal/De-Seleccionar" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <p></p>
+
+    <section id="informacion">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col col-xs-6">
+                    <h1>Más información sobre la aplicación</h1>
+                </div>
+                <div class="col col-xs-6">
+                    <p>Aplicación web que permite gestionar vídeos, fotos y otra información que los usuarios vayan encontrando por la red y les resulte interesante. Estos podrán ser votados o comentador por usuarios registrados.
+                    Pulse a continuación para obtener más información</p>
+                    <p><a href="{%url 'informacion'%}">Más información ></a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p></p>
+    {% endblock %}
+</body>

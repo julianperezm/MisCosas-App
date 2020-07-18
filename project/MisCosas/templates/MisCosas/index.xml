@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed>
+    <titulo>Mis Cosas</titulo>
+
+    <top10>
+        {%for item in top10 %}
+            <item>
+                <nombre>{{item.nombre}}</nombre>
+                <link>{{item.enlace}}</link>
+                <votospos>{{item.votosPositivos}}</votospos>
+                <votosneg>{{item.votosNegativos}}</votosneg>
+            </item>
+        {%endfor%}
+    </top10>
+    {% if user.is_authenticated %}
+    <top5>
+        {%for voto in itemsvotados%}
+            <nombre>{{voto.item.nombre}}</nombre>
+            <link>{{voto.item.enlace}}</link>
+            <estado>{{voto.estado}}</estado>
+        {%endfor%}
+    </top5>
+    {%endif%}
+
+    <alimentadoresselec>
+        <alimentadoresyou>
+            {%for alimentadores in alimentadoresYT%}
+            <alimentador>
+                <nombre>{{alimentadores.nombre}}</nombre>
+                <enlace>{{alimentadores.enlace}}</enlace>
+                <items>items:{{alimentadores.item_set.count}}</items>
+                <puntuacion>puntuacion:{{alimentadores.puntuacion}}</puntuacion>
+            </alimentador>
+            {%endfor%}
+        </alimentadoresyou>
+
+        <alimentadoresflickr>
+            {%for alimentadores in alimentadoresFR%}
+            <alimentador>
+                <nombre>{{alimentadores.nombre}}</nombre>
+                <enlace>{{alimentadores.enlace}}</enlace>
+                <items>items:{{alimentadores.item_set.count}}</items>
+                <puntuacion>puntuacion:{{alimentadores.puntuacion}}</puntuacion>
+            </alimentador>
+            {%endfor%}
+        </alimentadoresflickr>
+
+        <alimentadoreslastfm>
+            {%for alimentadores in alimentadoresLF%}
+            <alimentador>
+                <nombre>{{alimentadores.nombre}}</nombre>
+                <enlace>{{alimentadores.enlace}}</enlace>
+                <items>items:{{alimentadores.item_set.count}}</items>
+                <puntuacion>puntuacion:{{alimentadores.puntuacion}}</puntuacion>
+            </alimentador>
+            {%endfor%}
+        </alimentadoreslastfm>
+
+    </alimentadoresselec>
+</feed>
+

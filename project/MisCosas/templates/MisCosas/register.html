@@ -1,0 +1,23 @@
+{% extends 'MisCosas/base.html' %}
+
+    {% block contenido %}
+    <header class="register">
+        <h1> Crea tu usuario</h1>
+    </header>
+    <div class="container" id="register-form">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <form method="POST" action="" class="form-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="save btn btn-info">Crear</button>
+                </form>
+                {%if error%}
+                <p>{{error}}</p>
+                {%endif%}
+            </div>
+        </div>
+
+    </div>
+
+    {%endblock%}

@@ -1,0 +1,161 @@
+{% extends 'MisCosas/base.html' %}
+    {% block contenido %}
+    {%if alimentador.type == 'youtube'%}
+        <header id="itemyou">
+    {%elif alimentador.type == 'flickr'%}
+        <header id="itemfr">
+     {%elif alimentador.type == 'lastfm'%}
+        <header id="itemlf">
+    {%endif%}
+        {%if alimentador.type == 'youtube'%}
+            <h3><i class="fab fa-youtube"></i>Youtube</h3>
+        {%elif alimentador.type == 'flickr'%}
+            <h3><i class="fab fa-flickr"></i>Flickr</h3>
+        {%elif alimentador.type == 'lastfm'%}
+            <h3>l<i class="fab fa-lastfm"></i>t.fm</h3>
+        {%endif%}
+        <h1><a href="{{item.enlace}}">{{item.nombre}}</a></h1>
+        <div class="row">
+            <div class="col-sm-3 offset-sm-3">
+                <h2><i class="fas fa-thumbs-up fa-2x"></i></h2>
+                <h2>{{item.votosPositivos}}</h2>
+            </div>
+            <div class="col col-sm-3">
+                <h2><i class="fas fa-thumbs-down fa-2x"></i></h2>
+                <h2>{{item.votosNegativos}}</h2>
+            </div>
+        </div>
+        <br>
+        {% if user.is_authenticated %}
+         <h3>¿Te gusta la página?</h3>
+        <div class="row botonesvotos">
+            <div class="col-sm-2 offset-sm-4 ">
+                    <form action="{{item.itemId}}/paginaItem/votopositivo/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary-outline botonitem" name="action" value="votopositivo"><i class="fas fa-thumbs-up fa-2x"></i></button>
+                </form>
+            </div>
+            <div class="col col-sm-2 ">
+                    <form action="{{item.itemId}}/paginaItem/votonegativo/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary-outline botonitem" name="action" value="votonegativo"><i class="fas fa-thumbs-down fa-2x"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row botonesvotos">
+            {%if voto.estado == 'estadopositivo'%}
+            <div class="col-sm-2 offset-sm-4 ">
+                <h4><i class="far fa-check-circle"></i></h4>
+            </div>
+            {%elif voto.estado == "estadonegativo"%}
+            <div class="col-sm-2 offset-sm-6 ">
+                 <h4><i class="far fa-check-circle"></i></h4>
+            </div>
+            {%endif%}
+        </div>
+        {%endif%}
+    </header>
+            <p></p>
+    <section >
+        {%if alimentador.type == 'youtube'%}
+            <div class="row" id="itemsection">
+                <div class="col col-sm-6">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{item.itemId}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="col col-sm-6">
+                    <h1>Descripción</h1>
+                    <p>{{item.descripcion}}</p>
+                </div>
+            </div>
+        {%elif alimentador.type == 'flickr'%}
+            <div class="row justify-content-center " id="itemsection">
+                <img src="{{item.fotoItem}}" class="text-center">
+            </div>
+        {%elif alimentador.type == 'lastfm'%}
+            <div class="row justify-content-center " id="itemsection">
+                <div class="col col-sm-6">
+                    <h1>Portada del album</h1>
+                </div>
+                <div class="col col-sm-6">
+                    <img src="{{item.fotoItem}}" class="text-center" width="300px">
+                </div>
+
+            </div>
+        {%endif%}
+    </section>
+    <p></p>
+    <section >
+         <div class="row" id="itemalimentador">
+                <div class="col col-sm-6">
+                    <h5>Este ítem pertenece a</h5>
+                    <h1><a href="{{alimentador.enlace}}">{{alimentador.nombre}}</a></h1>
+                    {%if alimentador.type == 'youtube'%}
+                    <form action="/MisCosas/{{alimentador.type}}/{{alimentador.alimentadorId}}" method="POST">
+                    {%elif alimentador.type == 'flickr' or alimentador.type == 'lastfm' %}
+                    <form action="/MisCosas/{{alimentador.type}}/{{alimentador.nombre}}" method="POST">
+                    {%endif%}
+                    {% csrf_token %}
+                    <h2 class="nombreitem">
+                        <button id="boton01" class="btn" name="action" value="{{content.nombre}}">Alimentador</button>
+                    </h2>
+                    </form>
+                </div>
+                <div class="col col-sm-3">
+                    <h2>Items</h2>
+                    <h5>{{alimentador.item_set.count}}</h5>
+                </div>
+                <div class="col col-sm-3">
+                    <h2>Puntuación</h2>
+                    <h5>{{alimentador.puntuacion}}</h5>
+                </div>
+        </div>
+    </section>
+    <br>
+    <section id="itemscomments">
+        <h2><i class="fas fa-comment"></i></h2>
+        <h1>Comentarios</h1>
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                {%if comment%}
+                {%for comentario in comment%}
+                {%if comentario.usuario.image%}
+                <h2> <img  class="" src="{{comentario.usuario.image.url}}" width="80">{{comentario.usuario.username}}</h2>
+                {%else%}
+                <h2><i class="fas fa-user"></i>&nbsp&nbsp{{comentario.usuario.username}}</h2>
+                {%endif%}
+                <h4>{{comentario.fecha}}</h4>
+                {%if comentario.imagen%}
+                <div class="row align-items-center">
+                    <div class="col-sm-3 offset-sm-3">
+                        <p>{{comentario.cuerpo}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <img  class="" src="{{comentario.imagen.url}}"  width="80">
+                    </div>
+                </div>
+
+                {%else%}
+                <p>{{comentario.cuerpo}}</p>
+                {%endif%}
+                <hr>
+                {%endfor%}
+
+                {%else%}
+                    <h4>No Comments</h4>
+                {%endif%}
+                <br>
+
+                {% if user.is_authenticated %}
+                <h3>Nuevo comentario</h3>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form2.as_p}}
+                    <button type="submit" class="btn btn-primary" name="action" value="comment">Enviar</button>
+                </form>
+            </div>
+                {%endif%}
+        </div>
+
+    </section>
+    {%endblock%}

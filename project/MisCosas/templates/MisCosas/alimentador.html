@@ -1,0 +1,58 @@
+{% extends 'MisCosas/base.html' %}
+    {% block contenido %}
+
+    <header id="alimentador">
+        {%if alimentador.type == 'youtube'%}
+            <h2 class="youtube"><i class="fab fa-youtube"></i>Youtube</h2>
+        {%elif alimentador.type == 'flickr'%}
+            <h2 class="flickr"><i class="fab fa-flickr"></i>Flickr</h2>
+        {%elif alimentador.type == 'lastfm'%}
+            <h2 class="lastfm">L<i class="fab fa-lastfm"></i>t.fm</h2>
+        {%endif%}
+        <h1><a href="{{alimentador.enlace}}">{{alimentador.nombre}}</a></h1>
+        <div class="col-sm-4 offset-sm-4">
+            {%if alimentador.type == 'youtube'%}
+            <form action="{{alimentador.alimentadorId}}/paginaAlimentador/De-Seleccionar" method="POST">
+            {%elif alimentador.type == 'flickr' or alimentador.type == 'lastfm' %}
+            <form action="{{alimentador.nombre}}/paginaAlimentador/De-Seleccionar" method="POST">
+            {%endif%}
+                {% csrf_token %}
+                {%if alimentador.pagPrincipal%}
+                <button type="submit" class="btn btn-primary">Deselecionar</button>
+                {%else%}
+                <button type="submit" class="btn btn-primary">Seleccionar</button>
+                {%endif%}
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 offset-9 actualizar">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary ">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </header>
+    <p></p>
+    {% if contentList %}
+    <div class="row" id="informacionalimentador">
+        {% for content in contentList %}
+            <div class="col col-sm-3">
+                <section class="alim">
+                    <h5 class="nombreitem">
+                        <a href="{{content.enlace}}">{{content.nombre}}</a><br>
+                    </h5>
+                    <a class="enlaceitem" href="{{alimentador.alimentadorId}}/{{content.itemId}}">Más información ></a>
+                </section>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+
+    <p></p>
+
+    {% else %}
+    <p>No contents are available.</p>
+    {% endif %}
+
+    {%endblock%}
